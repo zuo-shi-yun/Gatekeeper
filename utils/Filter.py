@@ -94,8 +94,9 @@ class HandleRequest:
         today = datetime.date.today()
 
         time_last = datetime.datetime.strptime(time_last, "%m-%d").date()
+        time_last = time_last.replace(year=datetime.datetime.now().year)
 
-        diff = time_last - today
+        diff = today - time_last
         days_diff = diff.days
 
         return timeout <= days_diff
