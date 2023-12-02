@@ -57,14 +57,12 @@ def check_config():
 
     if 'white_list' not in config:
         raise ValueError('缺少white_list配置')
-    elif not isinstance(list(config['white_list']), list) or not all(
-            isinstance(elem, int) for elem in config['white_list']):
+    elif not isinstance(list(config['white_list']), list):
         raise ValueError('white_list配置项错误')
 
     if 'black_list' not in config:
         raise ValueError('缺少black_list配置')
-    elif not isinstance(list(config['black_list']), list) or not all(
-            isinstance(elem, int) for elem in config['black_list']):
+    elif not isinstance(list(config['black_list']), list):
         raise ValueError('black_list配置项错误')
 
     if 'tourist_over_usage_msg' not in config:
