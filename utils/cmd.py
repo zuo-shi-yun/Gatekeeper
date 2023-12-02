@@ -17,7 +17,7 @@ class HandleCmd:
 
         self.cmd = cmd  # 用户命令
         self.param = param  # 命令参数
-        self.__cfg = copy.deepcopy(cfg)  # 配置
+        self.__cfg = ConfigManage.get_config()  # 配置
 
         self.ret_msg = ''  # 回复信息
         self.e = None  # 异常

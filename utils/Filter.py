@@ -1,9 +1,8 @@
 """实现黑白名单、临时用户逻辑"""
-import copy
 import datetime
 import random
 
-from plugins.Gatekeeper.utils.database import DatabaseManager
+from plugins.Gatekeeper.utils.database import DatabaseManager, ConfigManage
 
 
 class HandleRequest:
@@ -17,7 +16,7 @@ class HandleRequest:
         self.e = None  # 异常
         self.ret_msg = ''  # 回复信息
 
-        self.cfg = copy.deepcopy(cfg)
+        self.cfg = ConfigManage.get_config()
 
         self.status = self.handle()  # True放行False阻止
 
