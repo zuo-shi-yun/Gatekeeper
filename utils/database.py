@@ -4,6 +4,7 @@
 import logging
 import re
 import sqlite3
+import threading
 from sqlite3 import Cursor
 from typing import List
 
@@ -127,6 +128,9 @@ class DatabaseManager:
         self.close()
 
 
+write_lock = threading.Lock()
+
+
 # 配置文件操作
 class ConfigManage:
     """配置文件操作"""
@@ -141,9 +145,10 @@ class ConfigManage:
         获取配置文件
         :return:
         """
-        with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
-            yamls = YAML(typ='rt')
-            config = yamls.load(f)
+        while write_lock.locked():  # 写时不能读
+            with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
+                yamls = YAML(typ='rt')
+                config = yamls.load(f)
 
         return config
 
@@ -154,9 +159,10 @@ class ConfigManage:
         设置配置文件
         :return:
         """
-        with open('plugins/Gatekeeper/config.yml', 'w', encoding='utf-8') as f:
-            yamls = YAML()
-            yamls.dump(config, f)
+        with write_lock:  # 加锁
+            with open('plugins/Gatekeeper/config.yml', 'w', encoding='utf-8') as f:
+                yamls = YAML()
+                yamls.dump(config, f)
 
     # 获得config
     @property

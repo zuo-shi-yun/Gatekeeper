@@ -6,7 +6,7 @@ normal_cmd: true
 # 是否屏蔽其余插件行为
 # 为True时屏蔽,可以通过更改plugins/settings.json中order字段中每个插件名称的前后顺序
 #以达到精准控制屏蔽某些插件
-prevent_listen_qq_msg: false
+prevent_postorder: false
 
 # ——————————————————————————————-黑名单配置 ——————————————————————————————-
 #是否开启黑名单机制
