@@ -1,5 +1,7 @@
 """处理用户指令"""
 import copy
+from io import StringIO
+from pprint import pprint
 
 from pkg.plugin.host import PluginHost
 from plugins.Gatekeeper.utils.database import ConfigManage
@@ -47,6 +49,7 @@ class HandleCmd:
             '设置临时用户最低配额': self.set_tourist_min_usage,
             '设置刷新天数': self.set_tourist_refresh_day,
             '设置超额信息': self.set_out_usage_info,
+            '查询全部配置': self.get_all_cfg,
         }
 
         if self.cmd in handle_func:  # 是本插件处理指令
@@ -236,3 +239,12 @@ class HandleCmd:
         cfg = self.cfg
         cfg['tourist_over_usage_msg'] = '\n'.join(self.param)
         ConfigManage.set_config(cfg)
+
+    # 得到全部配置
+    @decorator
+    def get_all_cfg(self):
+        """得到全部配置"""
+        output = StringIO()
+        cfg = self.cfg
+        pprint(cfg, stream=output)
+        self.ret_msg = output.getvalue()

@@ -5,6 +5,7 @@ import logging
 import re
 import sqlite3
 import threading
+import time
 from sqlite3 import Cursor
 from typing import List
 
@@ -146,10 +147,11 @@ class ConfigManage:
         :return:
         """
         while write_lock.locked():  # 写时不能读
-            with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
-                yamls = YAML(typ='rt')
-                config = yamls.load(f)
-
+            time.sleep(0.1
+                       )
+        with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
+            yamls = YAML(typ='rt')
+            config = yamls.load(f)
         return config
 
     # 重写配置文件
