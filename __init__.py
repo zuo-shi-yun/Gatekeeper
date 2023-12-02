@@ -1,7 +1,10 @@
 # 检查配置文件
+import sys
+
+
 def check_config():
     """检查配置文件"""
-    from utils.database import ConfigManage
+    from plugins.Gatekeeper.utils.database import ConfigManage
 
     cfg = ConfigManage()
     config = cfg.get_config()
@@ -103,7 +106,7 @@ def import_config(config):
 
 def main():
     config = check_config()  # 检查配置项
-
+    sys.path.append()
     # 检查数据库
     from plugins.Gatekeeper.utils.database import DatabaseManager
     DatabaseManager().init_database()  # 初始化数据库
