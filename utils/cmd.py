@@ -46,7 +46,7 @@ class HandleCmd:
             '设置临时用户最低配额': self.set_tourist_min_usage,
             '设置刷新天数': self.set_tourist_refresh_day,
             '设置超额信息': self.set_out_usage_info,
-            '查询全部配置': self.get_all_cfg,
+            '查询配置': self.get_all_cfg,
             '打开普通指令': self.open_normal_cmd,
             '关闭普通指令': self.close_normal_cmd,
             '打开阻止插件': self.open_prevent_order,
@@ -83,7 +83,7 @@ class HandleCmd:
         config = self.cfg
 
         for i in self.param:
-            if i not in config['white_list']:
+            if int(i) not in config['white_list']:
                 config['white_list'].append(i)
 
         ConfigManage.set_config(config)
@@ -95,7 +95,7 @@ class HandleCmd:
         config = self.cfg
 
         for i in self.param:
-            if i not in config['black_list']:
+            if int(i) not in config['black_list']:
                 config['black_list'].append(i)
 
         ConfigManage.set_config(config)
@@ -107,7 +107,7 @@ class HandleCmd:
         config = self.cfg
 
         for i in self.param:
-            if i in config['white_list']:
+            if int(i) in config['white_list']:
                 config['white_list'].remove(i)
 
         ConfigManage.set_config(config)
@@ -119,7 +119,7 @@ class HandleCmd:
         config = self.cfg
 
         for i in self.param:
-            if i in config['black_list']:
+            if int(i) in config['black_list']:
                 config['black_list'].remove(i)
 
         ConfigManage.set_config(config)
@@ -169,7 +169,7 @@ class HandleCmd:
     def close_black_list(self):
         """关闭黑名单"""
         cfg = self.cfg
-        cfg['close_list_enable'] = True
+        cfg['black_list_enable'] = True
 
         ConfigManage.set_config(cfg)
 
