@@ -1,7 +1,7 @@
 from pkg.plugin.host import EventContext, PluginHost
 from pkg.plugin.models import *
-from plugins.GateKeeper.utils.cmd import HandleCmd
-from plugins.GateKeeper.utils.database import ConfigManage
+from plugins.Gatekeeper.utils.cmd import HandleCmd
+from plugins.Gatekeeper.utils.database import ConfigManage
 
 """
 黑白名单、临时用户机制
