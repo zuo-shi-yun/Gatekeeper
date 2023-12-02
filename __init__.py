@@ -112,5 +112,7 @@ def main():
     import_config(config)
 
 
+main()
+
 if __name__ == '__main__':
     main()
