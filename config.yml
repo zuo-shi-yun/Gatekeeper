@@ -27,7 +27,7 @@ white_list:
 tourist_list_enable: true
 
 #临时用户最大配额,根据tourist_refresh_days参数刷新配额
-tourist_max_usage: 3
+tourist_max_usage: 3 # [0,∞)
 
 #临时用户配额刷新天数,只精确到日不精确到时分秒
 #每经过该天数自动刷新配额
@@ -42,4 +42,4 @@ tourist_over_usage_msg: "因本接口收费，故系统有流量上限。\n今�
 tourist_random_usage: false
 
 #临时用户最小配额
-tourist_min_usage: 1
+tourist_min_usage: 1 # [0,tourist_max_usage]

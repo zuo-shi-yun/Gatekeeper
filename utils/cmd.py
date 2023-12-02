@@ -1,4 +1,6 @@
 """处理用户指令"""
+import copy
+
 from pkg.plugin.host import PluginHost
 
 
@@ -13,7 +15,7 @@ class HandleCmd:
 
         self.cmd = cmd  # 用户命令
         self.param = param  # 命令参数
-        self.cfg = cfg  # 配置
+        self.cfg = copy.deepcopy(cfg)  # 配置
 
         self.ret_msg = ''  # 回复信息
         self.e = None  # 异常
