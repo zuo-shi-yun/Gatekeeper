@@ -77,7 +77,7 @@ class HandleRequest:
                     self.ret_msg = self.cfg['tourist_over_usage_msg'].format(self.cfg['tourist_refresh_days'])
                     return False
                 else:  # 没有超出则允许使用并更新使用次数
-                    svc.update({'use_cnt': use_time + 1}, {'qq': self.qq})
+                    svc.update({'usage': use_time + 1}, {'qq': self.qq})
                     return True
         else:  # 没有在则插入并设次数为1
             if self.cfg['tourist_random_usage']:  # 开启了随机配额:
@@ -86,7 +86,7 @@ class HandleRequest:
                 max_usage = self.cfg['tourist_max_usage']
             # 插入数据库
             svc.insert(
-                {'qq': self.qq, 'time': datetime.datetime.now().strftime("%m-%d"), 'use_cnt': 1,
+                {'qq': self.qq, 'time': datetime.datetime.now().strftime("%m-%d"), 'usage': 1,
                  'max_usage': max_usage})
             return True
 

@@ -19,7 +19,7 @@ class DatabaseManager:
     conn = None
     cursor = None
 
-    def __init__(self, database_name: str = None):
+    def __init__(self, database_name: str = 'tourist'):
         self.reconnect()
         self.database = database_name
 
