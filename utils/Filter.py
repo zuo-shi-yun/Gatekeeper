@@ -74,7 +74,7 @@ class HandleRequest:
                 max_use_time = svc.query(['max_usage'], {'key': 'max_use_time'})[0]
 
                 if use_time >= max_use_time:  # 已经超出则禁止使用
-                    self.ret_msg = self.cfg['tourist_over_usage_msg']
+                    self.ret_msg = self.cfg['tourist_over_usage_msg'].format(self.cfg['tourist_refresh_days'])
                     return False
                 else:  # 没有超出则允许使用并更新使用次数
                     svc.update({'use_cnt': use_time + 1}, {'qq': self.qq})
