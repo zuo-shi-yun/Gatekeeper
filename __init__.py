@@ -78,12 +78,12 @@ def import_config(config):
     import banlist
     ban_person = banlist.person
     ban_group = banlist.group
-    if len(cfg['white_list']) == 1 and cfg['white_list'][0] is None:  # 为空则添加管理员
-        cfg['white_list'] = ban_person + ban_group
+    if len(cfg['black_list']) == 1 and cfg['black_list'][0] is None:  # 为空则添加管理员
+        cfg['black_list'] = ban_person + ban_group
     else:  # 不为空则追加管理员
         for i in ban_person + ban_group:
-            if i not in cfg['white_list']:
-                cfg['white_list'].append(i)
+            if i not in cfg['black_list']:
+                cfg['black_list'].append(i)
 
     # 白名单
     from pkg.utils import context
@@ -98,7 +98,7 @@ def import_config(config):
             if i not in cfg['white_list']:
                 cfg['white_list'].append(i)
 
-    config.set_config(cfg)
+    config.config = cfg
 
 
 def main():
