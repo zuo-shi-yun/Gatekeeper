@@ -7,7 +7,10 @@ import sqlite3
 from sqlite3 import Cursor
 from typing import List
 
+from ruamel.yaml import YAML
 
+
+# 数据库操作
 class DatabaseManager:
     """数据库"""
 
@@ -35,7 +38,7 @@ class DatabaseManager:
         """插入数据"""
         insert_key = '`' + '` ,`'.join(list(insert_data.keys())) + '`'
         # insert_value = ', '.join((f'"{v}"' if isinstance(v, str) else f'{v}') for v in insert_data.values())
-        insert_value = ', '.join(['?' for i in range(len(insert_data))])
+        insert_value = ', '.join(['?' for _ in range(len(insert_data))])
         sql = f"insert into {self.database} ({insert_key}) values ({insert_value})"
         return self.__execute__(sql, tuple(insert_data.values()))
 
@@ -105,6 +108,16 @@ class DatabaseManager:
         :return:
         """
 
+        self.__execute__("""
+            create table if not exists tourist(
+                `id` INTEGER primary key AUTOINCREMENT,  
+                `qq` int,
+                `usage` int,
+                `max_usage` int,
+                `time` text
+            )
+        """)
+
         logging.debug('数据库检测完毕')
 
     def close(self):
@@ -112,3 +125,46 @@ class DatabaseManager:
 
     def __del__(self):
         self.close()
+
+
+# 配置文件操作
+class ConfigManage:
+    """配置文件操作"""
+
+    def __init__(self):
+        self.__config = self.get_config()
+
+    # 获取配置文件
+    @staticmethod
+    def get_config() -> dict:
+        """
+        获取配置文件
+        :return:
+        """
+        with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
+            yamls = YAML(typ='rt')
+            config = yamls.load(f)
+
+        return config
+
+    # 重写配置文件
+    @staticmethod
+    def set_config(config):
+        """
+        设置配置文件
+        :return:
+        """
+        with open('plugins/Gatekeeper/config.yml', 'w', encoding='utf-8') as f:
+            yamls = YAML()
+            yamls.dump(config, f)
+
+    # 获得config
+    @property
+    def config(self):
+        return self.__config
+
+    # 设置config
+    @config.setter
+    def config(self, value: dict):
+        self.__config = value
+        self.set_config(self.__config)

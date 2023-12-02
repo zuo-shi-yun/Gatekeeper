@@ -4,12 +4,14 @@
 class HandleRequest:
     """处理请求"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, cfg: dict, **kwargs):
         self.qq = kwargs.get('launcher_id')
         self.sender_id = kwargs.get('sender_id')
         self.qq_type = 0 if kwargs.get('launcher_type') == 'person' else 1  # 0 个人 1 群
 
         self.e = None  # 异常
+
+        self.cfg = cfg
 
         self.status = self.handle()  # True放行False阻止
 
