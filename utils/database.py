@@ -147,8 +147,7 @@ class ConfigManage:
         :return:
         """
         while write_lock.locked():  # 写时不能读
-            time.sleep(0.1
-                       )
+            time.sleep(0.1)
         with open('plugins/Gatekeeper/config.yml', 'r', encoding='utf-8') as f:
             yamls = YAML(typ='rt')
             config = yamls.load(f)

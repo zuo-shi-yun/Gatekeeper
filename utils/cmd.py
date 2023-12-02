@@ -4,6 +4,7 @@ from io import StringIO
 from pprint import pprint
 
 from pkg.plugin.host import PluginHost
+from pkg.utils import context
 from plugins.Gatekeeper.utils.database import ConfigManage
 
 from utils.database import ConfigManage
@@ -51,8 +52,11 @@ class HandleCmd:
             '设置超额信息': self.set_out_usage_info,
             '查询全部配置': self.get_all_cfg,
         }
+        admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
+        if not isinstance(admin_qq, list):
+            admin_qq = [admin_qq]
 
-        if self.cmd in handle_func:  # 是本插件处理指令
+        if self.cmd in handle_func and self.sender_id in admin_qq:  # 是本插件处理指令且是管理员
             handle_func[self.cmd]()
             return True
         else:
