@@ -1,8 +1,3 @@
-import sys
-
-sys.path.append('plugins/Gatekeeper')  # 添加模块搜索路径
-
-
 # 检查配置文件
 def check_config():
     """检查配置文件"""
@@ -110,7 +105,7 @@ def main():
     config = check_config()  # 检查配置项
 
     # 检查数据库
-    from utils.database import DatabaseManager
+    from plugins.GateKeeper.utils.database import DatabaseManager
     DatabaseManager().init_database()  # 初始化数据库
 
     # 导入黑白名单

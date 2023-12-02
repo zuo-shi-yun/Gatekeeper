@@ -1,13 +1,7 @@
-import os
-import sys
-
 from pkg.plugin.host import EventContext, PluginHost
 from pkg.plugin.models import *
-
-sys.path.append(os.path.join('plugins', 'GateKeeper'))
-
-from utils.cmd import HandleCmd
-from utils.database import ConfigManage
+from plugins.GateKeeper.utils.cmd import HandleCmd
+from plugins.GateKeeper.utils.database import ConfigManage
 
 """
 黑白名单、临时用户机制
