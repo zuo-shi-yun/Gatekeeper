@@ -7,8 +7,6 @@ from pkg.plugin.host import PluginHost
 from pkg.utils import context
 from plugins.Gatekeeper.utils.database import ConfigManage
 
-from utils.database import ConfigManage
-
 
 class HandleCmd:
     """处理用户指令"""
