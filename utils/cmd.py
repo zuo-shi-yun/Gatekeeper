@@ -17,7 +17,7 @@ class HandleCmd:
 
         self.cmd = cmd  # 用户命令
         self.param = param  # 命令参数
-        self.cfg = copy.deepcopy(cfg)  # 配置
+        self.__cfg = copy.deepcopy(cfg)  # 配置
 
         self.ret_msg = ''  # 回复信息
         self.e = None  # 异常
@@ -69,6 +69,7 @@ class HandleCmd:
             try:
                 ret = func(self, *args, **kwargs)
                 self.ret_msg = self.ret_msg or '成功'
+                self.cfg = ConfigManage.get_config()
                 return ret
             except Exception as e:
                 self.ret_msg = f'失败!{e}'
@@ -285,3 +286,13 @@ class HandleCmd:
         cfg['prevent_postorder'] = False
 
         ConfigManage.set_config(cfg)
+
+    # 获得config
+    @property
+    def cfg(self):
+        return copy.deepcopy(self.__cfg)
+
+    # 设置config
+    @cfg.setter
+    def cfg(self, value: dict):
+        self.__cfg = value
