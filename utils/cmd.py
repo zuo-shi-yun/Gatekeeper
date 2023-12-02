@@ -1,13 +1,9 @@
 """处理用户指令"""
 import copy
-from io import StringIO
-from pprint import pprint
 
 from pkg.plugin.host import PluginHost
 from pkg.utils import context
 from plugins.Gatekeeper.utils.database import ConfigManage
-
-from utils.database import ConfigManage
 
 
 class HandleCmd:
@@ -248,7 +244,6 @@ class HandleCmd:
     @decorator
     def get_all_cfg(self):
         """得到全部配置"""
-        output = StringIO()
         cfg = self.cfg
-        pprint(cfg, stream=output)
-        self.ret_msg = output.getvalue()
+
+        self.ret_msg = '\n'.join([f'{k}:{v}' for k, v in cfg.items()])
