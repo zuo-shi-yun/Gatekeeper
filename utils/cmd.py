@@ -84,7 +84,7 @@ class HandleCmd:
 
         for i in self.param:
             if int(i) not in config['white_list']:
-                config['white_list'].append(i)
+                config['white_list'].append(int(i))
 
         ConfigManage.set_config(config)
 
@@ -96,7 +96,7 @@ class HandleCmd:
 
         for i in self.param:
             if int(i) not in config['black_list']:
-                config['black_list'].append(i)
+                config['black_list'].append(int(i))
 
         ConfigManage.set_config(config)
 
@@ -108,7 +108,7 @@ class HandleCmd:
 
         for i in self.param:
             if int(i) in config['white_list']:
-                config['white_list'].remove(i)
+                config['white_list'].remove(int(i))
 
         ConfigManage.set_config(config)
 
@@ -120,7 +120,7 @@ class HandleCmd:
 
         for i in self.param:
             if int(i) in config['black_list']:
-                config['black_list'].remove(i)
+                config['black_list'].remove(int(i))
 
         ConfigManage.set_config(config)
 
