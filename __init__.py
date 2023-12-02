@@ -88,7 +88,9 @@ def import_config(config):
         for i in ban_person + ban_group:
             if i not in cfg['black_list']:
                 cfg['black_list'].append(i)
-
+        # 删除示例qq
+        if len(cfg['black_list']) != 1 and '12345' in cfg['black_list']:
+            cfg['black_list'].remove('12345')
     # 白名单
     from pkg.utils import context
     admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
@@ -101,7 +103,9 @@ def import_config(config):
         for i in admin_qq:
             if i not in cfg['white_list']:
                 cfg['white_list'].append(i)
-
+        # 删除示例qq
+        if len(cfg['white_list']) != 1 and '12345' in cfg['white_list']:
+            cfg['white_list'].remove('12345')
     config.config = cfg
 
 
