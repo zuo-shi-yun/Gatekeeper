@@ -1,8 +1,8 @@
 ![Gatekeeper](https://socialify.git.ci/zuo-shi-yun/Gatekeeper/image?description=1&descriptionEditable=QChatGPT%E7%9A%84%E7%9C%8B%E9%97%A8%E7%8B%97%EF%BC%8C%E5%8C%85%E5%90%AB%E9%BB%91%E7%99%BD%E5%90%8D%E5%8D%95%E3%80%81%E4%B8%B4%E6%97%B6%E7%94%A8%E6%88%B7%E6%9C%BA%E5%88%B6&logo=https%3A%2F%2Fi.postimg.cc%2FJ4D42xfw%2Fpug.png&name=1&theme=Light)
 包含黑名单、白名单、临时用户机制的看门狗，保护流量的守门人。<br/>
-(本插件运行于[QChatGPT](https://github.com/RockChinQ/QChatGPT))<br/>
 下图是默认配置下的系统流程。
 [![image.png](https://i.postimg.cc/ZntkCP5g/image.png)](https://postimg.cc/sQcHLhS9)
+(本插件运行于[QChatGPT](https://github.com/RockChinQ/QChatGPT))<br/>
 <details>
 <summary> 
 
@@ -137,7 +137,8 @@
 1. **打开"cmd"形式的指令**："打开普通指令"。
 2. **关闭"cmd"形式的指令**："关闭普通指令"。
 3. **打开阻止其余插件行为**："打开插件阻止"  
-   tips：可以通过更改plugins/settings.json中order字段中每个插件名称的前后顺序，以达到精准控制屏蔽某些插件的目的。
+   tips：可以通过更改plugins/settings.json中order字段中每个插件名称的前后顺序，  
+   以达到精准控制屏蔽某些插件的目的。
 4. **关闭阻止其余插件行为**："关闭插件阻止"
 5. **查询系统所有配置项**："查询配置"
 
