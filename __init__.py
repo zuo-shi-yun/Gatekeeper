@@ -11,64 +11,65 @@ def check_config():
     if 'normal_cmd' not in config:
         raise ValueError('缺少normal_cmd配置')
     elif not isinstance(config['normal_cmd'], bool):
-        raise ValueError('normal_cmd配置类型错误')
+        raise ValueError('normal_cmd配置项错误')
 
     if 'prevent_listen_qq_msg' not in config:
         raise ValueError('缺少prevent_listen_qq_msg配置')
     elif not isinstance(config['prevent_listen_qq_msg'], bool):
-        raise ValueError('prevent_listen_qq_msg配置类型错误')
+        raise ValueError('prevent_listen_qq_msg配置项错误')
 
     if 'black_list_enable' not in config:
         raise ValueError('缺少black_list_enable配置')
     elif not isinstance(config['black_list_enable'], bool):
-        raise ValueError('black_list_enable配置类型错误')
+        raise ValueError('black_list_enable配置项错误')
 
     if 'white_list_enable' not in config:
         raise ValueError('缺少white_list_enable配置')
     elif not isinstance(config['white_list_enable'], bool):
-        raise ValueError('white_list_enable配置类型错误')
+        raise ValueError('white_list_enable配置项错误')
 
     if 'tourist_list_enable' not in config:
         raise ValueError('缺少tourist_list_enable配置')
     elif not isinstance(config['tourist_list_enable'], bool):
-        raise ValueError('tourist_list_enable配置类型错误')
+        raise ValueError('tourist_list_enable配置项错误')
 
     if 'tourist_random_usage' not in config:
         raise ValueError('缺少tourist_random_usage配置')
     elif not isinstance(config['tourist_random_usage'], bool):
-        raise ValueError('tourist_random_usage配置类型错误')
+        raise ValueError('tourist_random_usage配置项错误')
 
     if 'tourist_max_usage' not in config:
         raise ValueError('缺少tourist_max_usage配置')
     elif not isinstance(config['tourist_max_usage'], int) or config['tourist_max_usage'] < 0:
-        raise ValueError('tourist_max_usage配置类型错误')
+        raise ValueError('tourist_max_usage配置项错误')
 
     if 'tourist_refresh_days' not in config:
         raise ValueError('缺少tourist_refresh_days配置')
     elif not isinstance(config['tourist_refresh_days'], int) or config['tourist_refresh_days'] < 0:
-        raise ValueError('tourist_refresh_days配置类型错误')
+        raise ValueError('tourist_refresh_days配置项错误')
 
     if 'tourist_min_usage' not in config:
         raise ValueError('缺少tourist_min_usage配置')
     elif not isinstance(config['tourist_min_usage'], int) \
             or config['tourist_min_usage'] > config['tourist_max_usage'] \
             or config['tourist_min_usage'] < 0:
-        raise ValueError('tourist_min_usage配置类型错误')
+        raise ValueError('tourist_min_usage配置项错误')
 
     if 'white_list' not in config:
         raise ValueError('缺少white_list配置')
     elif not isinstance(config['white_list'], list) or all(isinstance(elem, int) for elem in config['white_list']):
-        raise ValueError('white_list配置类型错误')
+        raise ValueError('white_list配置项错误')
 
     if 'black_list' not in config:
         raise ValueError('缺少black_list配置')
-    elif not isinstance(config['black_list'], list) or all(isinstance(elem, int) for elem in config['black_list']):
-        raise ValueError('black_list配置类型错误')
+    elif not isinstance(list(config['black_list']), list) or all(
+            isinstance(elem, int) for elem in config['black_list']):
+        raise ValueError('black_list配置项错误')
 
     if 'tourist_over_usage_msg' not in config:
         raise ValueError('缺少tourist_over_usage_msg配置')
-    elif not isinstance(config['tourist_over_usage_msg'], str):
-        raise ValueError('tourist_over_usage_msg配置类型错误')
+    elif not isinstance(list(config['tourist_over_usage_msg']), str):
+        raise ValueError('tourist_over_usage_msg配置项错误')
     return cfg
 
 
