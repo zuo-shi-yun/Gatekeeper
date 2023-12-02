@@ -1,25 +1,14 @@
 normal_cmd: true
-
 prevent_postorder: false
-
 black_list_enable: true
-
 black_list:
   - 12345
-
 white_list_enable: true
-
 white_list:
   - 12345
-
 tourist_list_enable: true
-
 tourist_max_usage: 3
-
 tourist_refresh_days: 1
-
 tourist_over_usage_msg: "因本接口收费，故系统有流量上限。\n今日流量已达上限,请{}天后再来。\n若有急需请联系管理员"
-
 tourist_random_usage: false
-
 tourist_min_usage: 1

@@ -124,14 +124,14 @@ class HandleCmd:
     @decorator
     def get_white_list(self):
         # 得到白名单
-        res = [f"{i + 1}.{self.cfg['white_list'][i]}" for i in self.cfg['white_list']]
+        res = [f"{i + 1}.{self.cfg['white_list'][i]}" for i in range(len(self.cfg['white_list']))]
         self.ret_msg = '\n'.join(res)
 
     # 得到黑名单
     @decorator
     def get_black_list(self):
         # 得到黑名单
-        res = [f"{i + 1}.{self.cfg['black_list'][i]}" for i in self.cfg['black_list']]
+        res = [f"{i + 1}.{self.cfg['black_list'][i]}" for i in range(len(self.cfg['black_list']))]
         self.ret_msg = '\n'.join(res)
 
     # 开启白名单
