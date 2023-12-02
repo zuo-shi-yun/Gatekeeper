@@ -93,9 +93,10 @@ class HandleRequest:
     def is_last_use_time_out_refresh_time(timeout: int, time_last: str):
         today = datetime.date.today()
 
-        time_last = datetime.datetime.strptime(time_last, "%m-%d").date()
+        time_last = datetime.datetime.strptime('12-02', "%m-%d").date()
+        time_last = time_last.replace(year=datetime.datetime.now().year)
 
-        diff = time_last - today
+        diff = today - time_last
         days_diff = diff.days
 
-        return timeout <= days_diff
+        print(1 <= days_diff)
