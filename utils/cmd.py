@@ -1,9 +1,12 @@
 """处理用户指令"""
+import base64
 import copy
 
+from mirai import Image
 from pkg.plugin.host import PluginHost
 from pkg.utils import context
 from plugins.Gatekeeper.utils.database import ConfigManage
+from plugins.Gatekeeper.utils.md.data_source import md_to_pic
 
 
 class HandleCmd:
@@ -42,15 +45,16 @@ class HandleCmd:
             '关闭临时用户': self.close_tourist,
             '打开随机配额': self.open_random_usage,
             '关闭随机配额': self.close_random_usage,
-            '设置临时用户最大配额': self.set_tourist_max_usage,
-            '设置临时用户最低配额': self.set_tourist_min_usage,
-            '设置刷新天数': self.set_tourist_refresh_day,
-            '设置超额信息': self.set_out_usage_info,
+            '设置最高': self.set_tourist_max_usage,
+            '设置最低': self.set_tourist_min_usage,
+            '设置天数': self.set_tourist_refresh_day,
+            '设置信息': self.set_out_usage_info,
             '查询配置': self.get_all_cfg,
             '打开普通指令': self.open_normal_cmd,
             '关闭普通指令': self.close_normal_cmd,
-            '打开阻止插件': self.open_prevent_order,
-            '关闭阻止插件': self.close_prevent_order,
+            '打开插件阻止': self.open_prevent_order,
+            '关闭插件阻止': self.close_prevent_order,
+            '看门狗': self.help,
         }
         admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
         if not isinstance(admin_qq, list):
@@ -296,3 +300,10 @@ class HandleCmd:
     @cfg.setter
     def cfg(self, value: dict):
         self.__cfg = value
+
+    # 帮助
+    def help(self):
+        """帮助"""
+        md_image = md_to_pic(md_path=r'plugins\Gatekeeper\HELP.md', width=1050)
+        b64_img = base64.b64encode(md_image).decode()
+        self.ret_msg = Image(base64=b64_img, width=1050, height=5000)

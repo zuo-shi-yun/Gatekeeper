@@ -37,7 +37,7 @@ tourist_refresh_days: 1 #单位:天
 tourist_over_usage_msg: "因本接口收费，故系统有流量上限。\n今日流量已达上限,请{}天后再来。\n若有急需请联系管理员"
 
 #是否随机分配临时用户配额
-#开启后将随机从[tourist_min_usage, tourist_max_usage]范围内给不同用户分配不同配额
+#开启后将随机从[tourist_min_usage, tourist_max_usage]范围内给用户随机分配配额
 tourist_random_usage: false
 
 #临时用户最小配额
