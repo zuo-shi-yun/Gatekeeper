@@ -13,10 +13,10 @@ def check_config():
     elif not isinstance(config['normal_cmd'], bool):
         raise ValueError('normal_cmd配置项错误')
 
-    if 'prevent_listen_qq_msg' not in config:
-        raise ValueError('缺少prevent_listen_qq_msg配置')
-    elif not isinstance(config['prevent_listen_qq_msg'], bool):
-        raise ValueError('prevent_listen_qq_msg配置项错误')
+    if 'prevent_postorder' not in config:
+        raise ValueError('缺少prevent_postorder配置')
+    elif not isinstance(config['prevent_postorder'], bool):
+        raise ValueError('prevent_postorder配置项错误')
 
     if 'black_list_enable' not in config:
         raise ValueError('缺少black_list_enable配置')
