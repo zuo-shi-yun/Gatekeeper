@@ -47,6 +47,10 @@ class HandleCmd:
             '设置刷新天数': self.set_tourist_refresh_day,
             '设置超额信息': self.set_out_usage_info,
             '查询全部配置': self.get_all_cfg,
+            '打开普通指令': self.open_normal_cmd,
+            '关闭普通指令': self.close_normal_cmd,
+            '打开阻止插件': self.open_prevent_order,
+            '关闭阻止插件': self.close_prevent_order,
         }
         admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
         if not isinstance(admin_qq, list):
@@ -247,3 +251,37 @@ class HandleCmd:
         cfg = self.cfg
 
         self.ret_msg = '\n'.join([f'{k}:{v}' for k, v in cfg.items()])
+
+    # 打开普通指令
+    @decorator
+    def open_normal_cmd(self):
+        """打开普通指令"""
+        cfg = self.cfg
+        cfg['normal_cmd'] = True
+        ConfigManage.set_config(cfg)
+
+    # 关闭普通指令
+    @decorator
+    def close_normal_cmd(self):
+        """关闭普通指令"""
+        cfg = self.cfg
+        cfg['normal_cmd'] = False
+        ConfigManage.set_config(cfg)
+
+    # 打开阻止插件传递
+    @decorator
+    def open_prevent_order(self):
+        """打开阻止插件传递"""
+        cfg = self.cfg
+        cfg['prevent_postorder'] = True
+
+        ConfigManage.set_config(cfg)
+
+    # 关闭阻止插件传递
+    @decorator
+    def close_prevent_order(self):
+        """打开阻止插件传递"""
+        cfg = self.cfg
+        cfg['prevent_postorder'] = False
+
+        ConfigManage.set_config(cfg)
