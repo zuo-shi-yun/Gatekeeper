@@ -1,0 +1,44 @@
+# ——————————————————————————————-基础配置 ——————————————————————————————-
+# 是否允许非!cmd形式的命令
+# 若为False则只有以!开头的命令才会被识别
+normal_cmd: true #该配置不支持动态重载
+
+# 是否屏蔽其余插件行为
+# 为True时屏蔽,可以通过更改plugins/settings.json中order字段中每个插件名称的前后顺序
+#以达到精准控制屏蔽某些插件
+prevent_postorder: false #该配置不支持动态重载
+# ——————————————————————————————-黑名单配置 ——————————————————————————————-
+#是否开启黑名单机制
+black_list_enable: true
+
+#黑名单QQ号 自动添加banlist.py文件中的屏蔽QQ号
+black_list:
+  - 12345
+# ——————————————————————————————-白名单配置 ——————————————————————————————-
+#是否开启白名单机制
+white_list_enable: true
+
+#白名单QQ号 自动添加config.py文件中的管理员QQ号
+white_list:
+  - 12345
+# ——————————————————————————————-临时用户配置 ——————————————————————————————-
+#是否开启临时用户机制,不在黑名单且不在白名单的用户将自动成为临时用户
+tourist_list_enable: true
+
+#临时用户最大配额,根据tourist_refresh_days参数刷新配额
+tourist_max_usage: 3 # [0,∞)
+
+#临时用户配额刷新天数,只精确到日不精确到时分秒
+#每经过该天数自动刷新配额
+tourist_refresh_days: 1 #单位:天
+
+#超出配额时发送的信息
+#其中{}指tourist_refresh_days的值
+tourist_over_usage_msg: "因本接口收费，故系统有流量上限。\n今日流量已达上限,请{}天后再来。\n若有急需请联系管理员"
+
+#是否随机分配临时用户配额
+#开启后将随机从[tourist_min_usage, tourist_max_usage]范围内给不同用户分配不同配额
+tourist_random_usage: false
+
+#临时用户最小配额
+tourist_min_usage: 1 # [0,tourist_max_usage]
