@@ -302,6 +302,7 @@ class HandleCmd:
         self.__cfg = value
 
     # 帮助
+    @decorator
     def help(self):
         """帮助"""
         md_image = md_to_pic(md_path=r'plugins\Gatekeeper\HELP.md', width=800)
