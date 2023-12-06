@@ -25,7 +25,7 @@ class DiscountAssistant(Plugin):
         # 判断是否是本插件处理指令
         if handle.had_handle_cmd:
             event.prevent_default()
-            event.is_prevented_postorder()
+            event.prevent_postorder()
 
             if handle.ret_msg:  # 发送回复信息
                 event.add_return("reply", [handle.ret_msg])
@@ -47,7 +47,7 @@ class DiscountAssistant(Plugin):
                 event.prevent_default()
 
                 if self.cfg['prevent_postorder']:  # 是否阻止其他插件
-                    event.is_prevented_postorder()
+                    event.prevent_postorder()
             # 显式报错
             if handle_request.e:
                 raise handle_request.e
@@ -58,7 +58,7 @@ class DiscountAssistant(Plugin):
             # 判断是否是本插件处理指令
             if handle_cmd.had_handle_cmd:
                 event.prevent_default()
-                event.is_prevented_postorder()
+                event.prevent_postorder()
 
                 if handle_cmd.ret_msg:  # 发送回复信息
                     event.add_return("reply", [handle_cmd.ret_msg])
