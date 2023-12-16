@@ -2,24 +2,10 @@ normal_cmd: true
 prevent_postorder: false
 black_list_enable: true
 black_list:
-- 2854196310
-- 2781298988
-- 204785790
-- 614876491
+  - 12345
 white_list_enable: true
 white_list:
-- 2818252801
-- 1183722070
-- 1724884560
-- 841262194
-- 410296015
-- 3207455179
-- 1534329952
-- 2359960058
-- 2013181141
-- 2692706576
-- 1824468937
-- 1504818621
+  - 12345
 tourist_list_enable: true
 tourist_max_usage: 3
 tourist_refresh_days: 1
