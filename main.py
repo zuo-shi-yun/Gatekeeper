@@ -1,8 +1,11 @@
-from pkg.plugin.host import EventContext, PluginHost
-from pkg.plugin.models import *
+import importlib
+
 from plugins.Gatekeeper.utils.Filter import HandleRequest
 from plugins.Gatekeeper.utils.cmd import HandleCmd
 from plugins.Gatekeeper.utils.database import ConfigManage
+
+from pkg.plugin.host import EventContext, PluginHost
+from pkg.plugin.models import *
 
 """
 黑白名单、临时用户机制
@@ -10,7 +13,7 @@ from plugins.Gatekeeper.utils.database import ConfigManage
 
 
 # 注册插件
-@register(name="Gatekeeper", description="黑白名单、临时用户机制", version="1.0", author="zuoShiYun")
+@register(name="Gatekeeper", description="黑白名单、临时用户机制", version="1.1", author="zuoShiYun")
 class DiscountAssistant(Plugin):
     def __init__(self, plugin_host: PluginHost):
         self.host = plugin_host
@@ -164,8 +167,14 @@ def import_config(config):
         if len(cfg['black_list']) != 1 and 12345 in cfg['black_list']:
             cfg['black_list'].remove(12345)
     # 白名单
-    from pkg.utils import context
-    admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
+    try:
+        from pkg.utils import context
+        require_ver("v2.5.1", "v2.6.6")  # 不超过2.6.6使用老方法获得admin_qq
+        admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
+    except:  # 高于该版本使用新方法
+        host_config = importlib.import_module('config-template')
+        admin_qq = host_config.admin_qq
+
     if not isinstance(admin_qq, list):
         admin_qq = [admin_qq]
 
