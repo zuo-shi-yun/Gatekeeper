@@ -3,12 +3,11 @@ import base64
 import copy
 
 from mirai import Image
-from plugins.Gatekeeper.utils.database import ConfigManage
-from plugins.Gatekeeper.utils.md.data_source import md_to_pic
 
 from pkg.plugin.host import PluginHost
-from pkg.plugin.models import require_ver
-from pkg.utils import context
+from plugins.Gatekeeper.utils.HostConfig import HostConfig
+from plugins.Gatekeeper.utils.database import ConfigManage
+from plugins.Gatekeeper.utils.md.data_source import md_to_pic
 
 
 class HandleCmd:
@@ -58,12 +57,8 @@ class HandleCmd:
             '关闭插件阻止': self.close_prevent_order,
             '看门狗': self.help,
         }
-        try:
-            require_ver("v2.5.1", "v2.6.6")  # 不超过2.6.6使用老方法获得admin_qq
-            admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
-        except:  # 高于该版本使用新方法
-            host_config = context.get_config_manager().data
-            admin_qq = host_config['admin_qq']
+
+        admin_qq = HostConfig.get('admin_qq')
         if not isinstance(admin_qq, list):
             admin_qq = [admin_qq]
 

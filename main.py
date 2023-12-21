@@ -1,9 +1,9 @@
-from plugins.Gatekeeper.utils.Filter import HandleRequest
-from plugins.Gatekeeper.utils.cmd import HandleCmd
-from plugins.Gatekeeper.utils.database import ConfigManage
-
 from pkg.plugin.host import EventContext, PluginHost
 from pkg.plugin.models import *
+from plugins.Gatekeeper.utils.Filter import HandleRequest
+from plugins.Gatekeeper.utils.HostConfig import HostConfig
+from plugins.Gatekeeper.utils.cmd import HandleCmd
+from plugins.Gatekeeper.utils.database import ConfigManage
 
 """
 黑白名单、临时用户机制
@@ -165,14 +165,7 @@ def import_config(config):
         if len(cfg['black_list']) != 1 and 12345 in cfg['black_list']:
             cfg['black_list'].remove(12345)
     # 白名单
-    try:
-        from pkg.utils import context
-        require_ver("v2.5.1", "v2.6.6")  # 不超过2.6.6使用老方法获得admin_qq
-        admin_qq = getattr(context.get_config(), 'admin_qq')  # 管理员qq
-    except:  # 高于该版本使用新方法
-        host_config = context.get_config_manager().data
-        admin_qq = host_config['admin_qq']
-
+    admin_qq = HostConfig.get('admin_qq')
     if not isinstance(admin_qq, list):
         admin_qq = [admin_qq]
 
